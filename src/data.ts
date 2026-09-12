@@ -15,8 +15,10 @@ import pressBi from './assets/press-business-insider.jpg'
 import pressIngenious from './assets/press-ingenious.jpg'
 import cgShot from './assets/shot-commongap.png'
 import amcDlMain from './assets/amc-download-main.png'
-import amcDl1 from './assets/amc-download-1.png'
-import amcDl2 from './assets/amc-download-2.png'
+import amcYcRejection from './assets/amc-yc-rejection.png'
+import amcYtCover from './assets/amc-youtube-cover.jpg'
+import valeCover from './assets/press-youtube-cover.jpg'
+import valeSpeech from './assets/ethan-valedictorian-speech.jpg'
 
 export type GalleryItem = {
   src: string
@@ -26,6 +28,13 @@ export type GalleryItem = {
   kind: 'photo' | 'press' | 'product'
   outlet?: string
   headline?: string
+  /* Optional object-position override (e.g. '50% 20%') for photos where a
+   * centered cover-crop would cut into the actual subject — a face near
+   * one edge, a logo close to a corner. */
+  focus?: string
+  /* Default is cover-crop. Use contain for documents (emails, letters)
+   * that should stay fully readable instead of being cropped. */
+  fit?: 'cover' | 'contain'
 }
 
 export type MediaLink = {
@@ -66,6 +75,123 @@ export const PROFILE = {
 
 export const PROJECTS: Project[] = [
   {
+    id: 'amc',
+    name: 'AMC Academy',
+    url: 'https://amcacademy.org',
+    urlLabel: 'amcacademy.org',
+    tagline: 'Math-competition coaching, founded and run through high school',
+    description:
+      'AMC Academy coaches students for the AMC and AIME, the exams that open the door to the international math-olympiad pipeline. I founded it in grade ten, after becoming one of Canada\'s top-ranked competitors, ran it through my senior year, and applied to Y Combinator with it.',
+    bullets: [
+      'Grew it past $125K in revenue, serving more than 100 families across North America.',
+      'Recruited and managed coaches from MIT, Berkeley, NYU, and Carnegie Mellon.',
+      'Owned everything myself: curriculum, sales, the website and its AI features, marketing, and day-to-day operations.',
+      'Profiled by BCBusiness and CHEK News, with a partnership supporting students through STEM Center Africa.',
+      'Applied to Y Combinator with AMC Academy; the rejection said the application landed in the top 10% of the batch.',
+    ],
+    media: [
+      { label: 'Open AMC Academy', href: 'https://amcacademy.org', kind: 'live' },
+      {
+        label: 'BCBusiness',
+        href: 'https://bcbusiness.ca/business/education/this-teen-founded-victoria-tutoring-company-is-helping-students-qualify-for-international-math-competitions/',
+        kind: 'article',
+      },
+      {
+        label: 'CHEK News',
+        href: 'https://cheknews.ca/entrepreneurial-equation-smus-students-operate-profitable-online-tutoring-business-1233661/',
+        kind: 'article',
+      },
+      {
+        label: 'The White Hatter',
+        href: 'https://www.youtube.com/watch?v=A30ts8xVQKE',
+        kind: 'video',
+      },
+    ],
+    gallery: [
+      {
+        src: amcDlMain,
+        alt: 'AMC Academy website',
+        kind: 'product',
+        caption: 'amcacademy.org',
+        href: 'https://amcacademy.org',
+      },
+      {
+        src: amcYcRejection,
+        alt: 'Y Combinator rejection email for AMC Academy, noting the application was in the top 10% of the batch',
+        kind: 'product',
+        fit: 'contain',
+      },
+      {
+        src: amcYtCover,
+        alt: 'YouTube cover for The White Hatter interview about AMC Academy',
+        kind: 'product',
+        caption: 'Watch the interview',
+        href: 'https://www.youtube.com/watch?v=A30ts8xVQKE',
+      },
+    ],
+  },
+  {
+    id: 'oscarai',
+    name: 'OscarAI',
+    url: 'https://oscarai.ca',
+    urlLabel: 'oscarai.ca',
+    tagline: 'A robot bin that sees and sorts waste',
+    description:
+      'OscarAI is a bin that sorts its own recycling. A camera identifies each item and motors route it into the right compartment. It started as a cardboard science-fair project and went through four hardware revisions on its way to national recognition.',
+    bullets: [
+      'Placed second at the Vancouver Island Regional Science Fair and won the BC Game Developers Innovation Award.',
+      'Recognized nationally with an Ingenious+ innovation award and a place at the Canada-Wide Science Fair.',
+      'Now operates as a small company, with ten product-engineering interns and customers internationally.',
+    ],
+    videoSrc: oscarVideo,
+    videoAspect: 'portrait',
+    media: [
+      { label: 'Open OscarAI', href: 'https://oscarai.ca', kind: 'live' },
+      {
+        label: 'SMUS News',
+        href: 'https://www.smus.ca/news/oscar-ai-triumphs-regionals-nationals',
+        kind: 'article',
+      },
+      {
+        label: 'Ingenious+',
+        href: 'https://ingeniousplus.ca/29-ingenious-youth-recognized-for-outstanding-innovation-in-b-c-and-y-t/',
+        kind: 'award',
+      },
+    ],
+    gallery: [
+      {
+        src: oscarSmus,
+        alt: 'SMUS News feature on OscarAI',
+        kind: 'press',
+        outlet: 'SMUS News',
+        headline: 'Oscar AI triumphs: from regionals to nationals',
+        href: 'https://www.smus.ca/news/oscar-ai-triumphs-regionals-nationals',
+      },
+      {
+        src: pressIngenious,
+        alt: 'Ingenious+ award announcement',
+        kind: 'press',
+        outlet: 'Ingenious+',
+        headline: '29 ingenious youth recognized for outstanding innovation',
+        href: 'https://ingeniousplus.ca/29-ingenious-youth-recognized-for-outstanding-innovation-in-b-c-and-y-t/',
+      },
+      { src: oscarProto1, alt: 'First OscarAI prototype', kind: 'photo', caption: 'First prototype' },
+      { src: oscarProto3, alt: 'Third OscarAI prototype', kind: 'photo', caption: 'Third prototype' },
+      { src: oscarProto4, alt: 'Fourth OscarAI prototype', kind: 'photo', caption: 'Fourth prototype' },
+      { src: oscarVirsf, alt: 'OscarAI at the regional science fair', kind: 'photo', caption: 'Regional science fair' },
+      { src: oscarIngenious, alt: 'Ingenious+ award ceremony', kind: 'photo', caption: 'Ingenious+ Awards' },
+      {
+        src: oscarNational,
+        alt: 'OscarAI at the Canada-Wide Science Fair',
+        kind: 'photo',
+        caption: 'Canada-Wide Science Fair',
+        // Very tall portrait photo cropped into a short wide tile — bias
+        // up so both faces clear the crop instead of centering on torsos.
+        focus: '50% 25%',
+      },
+    ],
+  },
+  {
     id: 'odin',
     name: 'Odin',
     url: 'https://odinwrite.com',
@@ -84,45 +210,6 @@ export const PROJECTS: Project[] = [
     gallery: [
       { src: odinCompose, alt: 'Odin compose mode', kind: 'product', caption: 'Compose mode' },
       { src: odinVoice, alt: 'Odin voice graph', kind: 'product', caption: 'Voice graph' },
-    ],
-  },
-  {
-    id: 'amc',
-    name: 'AMC Academy',
-    url: 'https://amcacademy.org',
-    urlLabel: 'amcacademy.org',
-    tagline: 'Math-competition coaching, founded and run through high school',
-    description:
-      'AMC Academy coaches students for the AMC and AIME, the exams that open the door to the international math-olympiad pipeline. I founded it in grade ten, after becoming one of Canada\'s top-ranked competitors, and ran it through my senior year.',
-    bullets: [
-      'Grew it past $125K in revenue, serving more than 100 families across North America.',
-      'Recruited and managed coaches from MIT, Berkeley, NYU, and Carnegie Mellon.',
-      'Owned everything myself: curriculum, sales, the website and its AI features, marketing, and day-to-day operations.',
-      'Profiled by BCBusiness and CHEK News, with a partnership supporting students through STEM Center Africa.',
-    ],
-    media: [
-      { label: 'Open AMC Academy', href: 'https://amcacademy.org', kind: 'live' },
-      {
-        label: 'BCBusiness',
-        href: 'https://bcbusiness.ca/business/education/this-teen-founded-victoria-tutoring-company-is-helping-students-qualify-for-international-math-competitions/',
-        kind: 'article',
-      },
-      {
-        label: 'CHEK News',
-        href: 'https://cheknews.ca/entrepreneurial-equation-smus-students-operate-profitable-online-tutoring-business-1233661/',
-        kind: 'article',
-      },
-    ],
-    gallery: [
-      {
-        src: amcDlMain,
-        alt: 'AMC Academy website',
-        kind: 'product',
-        caption: 'amcacademy.org',
-        href: 'https://amcacademy.org',
-      },
-      { src: amcDl1, alt: 'Student spotlight, Kevin Liu', kind: 'photo', caption: 'Kevin Liu · AIME qualifier' },
-      { src: amcDl2, alt: 'Student spotlight, Rohan R.', kind: 'photo', caption: 'Rohan R. · AIME qualifier' },
     ],
   },
   {
@@ -180,59 +267,6 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    id: 'oscarai',
-    name: 'OscarAI',
-    url: 'https://oscarai.ca',
-    urlLabel: 'oscarai.ca',
-    tagline: 'A robot bin that sees and sorts waste',
-    description:
-      'OscarAI is a bin that sorts its own recycling. A camera identifies each item and motors route it into the right compartment. It started as a cardboard science-fair project and went through four hardware revisions on its way to national recognition.',
-    bullets: [
-      'Placed second at the Vancouver Island Regional Science Fair and won the BC Game Developers Innovation Award.',
-      'Recognized nationally with an Ingenious+ innovation award and a place at the Canada-Wide Science Fair.',
-      'Now operates as a small company, with ten product-engineering interns and customers internationally.',
-    ],
-    videoSrc: oscarVideo,
-    videoAspect: 'portrait',
-    media: [
-      { label: 'Open OscarAI', href: 'https://oscarai.ca', kind: 'live' },
-      {
-        label: 'SMUS News',
-        href: 'https://www.smus.ca/news/oscar-ai-triumphs-regionals-nationals',
-        kind: 'article',
-      },
-      {
-        label: 'Ingenious+',
-        href: 'https://ingeniousplus.ca/29-ingenious-youth-recognized-for-outstanding-innovation-in-b-c-and-y-t/',
-        kind: 'award',
-      },
-    ],
-    gallery: [
-      {
-        src: oscarSmus,
-        alt: 'SMUS News feature on OscarAI',
-        kind: 'press',
-        outlet: 'SMUS News',
-        headline: 'Oscar AI triumphs: from regionals to nationals',
-        href: 'https://www.smus.ca/news/oscar-ai-triumphs-regionals-nationals',
-      },
-      {
-        src: pressIngenious,
-        alt: 'Ingenious+ award announcement',
-        kind: 'press',
-        outlet: 'Ingenious+',
-        headline: '29 ingenious youth recognized for outstanding innovation',
-        href: 'https://ingeniousplus.ca/29-ingenious-youth-recognized-for-outstanding-innovation-in-b-c-and-y-t/',
-      },
-      { src: oscarProto1, alt: 'First OscarAI prototype', kind: 'photo', caption: 'First prototype' },
-      { src: oscarProto3, alt: 'Third OscarAI prototype', kind: 'photo', caption: 'Third prototype' },
-      { src: oscarProto4, alt: 'Fourth OscarAI prototype', kind: 'photo', caption: 'Fourth prototype' },
-      { src: oscarVirsf, alt: 'OscarAI at the regional science fair', kind: 'photo', caption: 'Regional science fair' },
-      { src: oscarIngenious, alt: 'Ingenious+ award ceremony', kind: 'photo', caption: 'Ingenious+ Awards' },
-      { src: oscarNational, alt: 'OscarAI at the Canada-Wide Science Fair', kind: 'photo', caption: 'Canada-Wide Science Fair' },
-    ],
-  },
-  {
     id: 'commongap',
     name: 'Common Gap',
     url: 'https://www.commongap.com/',
@@ -273,3 +307,61 @@ export const PROJECTS: Project[] = [
     ],
   },
 ]
+
+export const VALEDICTORY: Project = {
+  id: 'valedictorian',
+  name: 'Valedictorian speech',
+  url: 'https://www.smus.ca/news/valedictory-speech-no-one-finds-their-way-alone',
+  urlLabel: 'smus.ca',
+  tagline: 'No One Finds Their Way Alone — SMUS Class of 2026',
+  description:
+    'I was valedictorian for St. Michaels University School\'s Class of 2026. The speech, delivered on June 18 in a packed gymnasium, is built around a SMUS story: a classmate lost on a Gotcha night, and the alumni who pulled over because they recognized one of their own. The point was that nobody here has to find their way alone.',
+  bullets: [
+    'Selected by the Class of 2026, after thirteen years at SMUS from kindergarten through grade twelve.',
+    'Published in full by SMUS News the next day, and shared again by the school on LinkedIn.',
+    'The YouTube recording of the address sits alongside the written speech on smus.ca.',
+  ],
+  videoEmbed: `https://www.youtube.com/embed/${PROFILE.valedictorianVideoId}`,
+  media: [
+    {
+      label: 'Watch on YouTube',
+      href: `https://www.youtube.com/watch?v=${PROFILE.valedictorianVideoId}`,
+      kind: 'video',
+    },
+    {
+      label: 'SMUS News',
+      href: 'https://www.smus.ca/news/valedictory-speech-no-one-finds-their-way-alone',
+      kind: 'article',
+    },
+    {
+      label: 'SMUS on LinkedIn',
+      href: 'https://www.linkedin.com/pulse/one-finds-way-alone-yoursmus-7ziic',
+      kind: 'article',
+    },
+    {
+      label: 'Class of 2026',
+      href: 'https://www.smus.ca/news/innovation-action-class-2026-heads-engineering-and-computer-science',
+      kind: 'article',
+    },
+  ],
+  gallery: [
+    {
+      src: valeCover,
+      alt: 'Class of 2026 Valedictorian, Ethan Curtis',
+      kind: 'press',
+      outlet: 'SMUS',
+      headline: 'Class of 2026 Valedictorian',
+      href: 'https://www.smus.ca/news/valedictory-speech-no-one-finds-their-way-alone',
+    },
+    {
+      src: valeSpeech,
+      alt: 'Ethan Curtis delivering the valedictorian speech',
+      kind: 'photo',
+      caption: 'June 18, 2026',
+      // Tall source photo cropped into a much wider card — biased toward
+      // the top so the face and cap survive instead of the crop centering
+      // on empty gown and clipping the head.
+      focus: '50% 22%',
+    },
+  ],
+}

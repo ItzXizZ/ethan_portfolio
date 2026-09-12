@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500;14..32,600;14..32,700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
 /* ============================================================
    Ethan Curtis portfolio — Odin liquid glass, snappier motion
@@ -8,9 +8,10 @@
   --pf-font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   --pf-font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --pf-font-body: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --pf-text: rgba(28, 28, 32, 0.94);
-  --pf-muted: rgba(55, 55, 62, 0.62);
-  --pf-faint: rgba(70, 70, 78, 0.42);
+  --pf-font-hero: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --pf-text: rgba(255, 255, 255, 0.94);
+  --pf-muted: rgba(220, 220, 230, 0.66);
+  --pf-faint: rgba(190, 190, 202, 0.46);
   --pf-glass-bg: linear-gradient(-75deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08));
   --pf-glass-shadow:
     inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
@@ -21,6 +22,10 @@
   --pf-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --pf-border-w: clamp(1px, 0.0625em, 3px);
   --angle-pf: -75deg;
+  /* Shared star field so the hero and the rest of the page paint the exact
+     same black/starfield background — used again on .pf-cover below so it
+     shows through the semi-transparent hero video, not just past it. */
+  --pf-star-field: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cg fill='white'%3E%3Ccircle cx='12' cy='18' r='0.55' opacity='0.4'/%3E%3Ccircle cx='83' cy='24' r='0.45' opacity='0.32'/%3E%3Ccircle cx='158' cy='31' r='0.6' opacity='0.45'/%3E%3Ccircle cx='227' cy='38' r='0.45' opacity='0.28'/%3E%3Ccircle cx='279' cy='14' r='0.4' opacity='0.24'/%3E%3Ccircle cx='29' cy='55' r='0.35' opacity='0.22'/%3E%3Ccircle cx='103' cy='58' r='0.3' opacity='0.2'/%3E%3Ccircle cx='177' cy='64' r='0.55' opacity='0.38'/%3E%3Ccircle cx='257' cy='72' r='0.4' opacity='0.26'/%3E%3Ccircle cx='8' cy='101' r='0.45' opacity='0.3'/%3E%3Ccircle cx='75' cy='105' r='0.6' opacity='0.42'/%3E%3Ccircle cx='150' cy='109' r='0.35' opacity='0.22'/%3E%3Ccircle cx='222' cy='115' r='0.4' opacity='0.26'/%3E%3Ccircle cx='288' cy='128' r='0.45' opacity='0.3'/%3E%3Ccircle cx='20' cy='148' r='0.4' opacity='0.26'/%3E%3Ccircle cx='95' cy='149' r='0.3' opacity='0.2'/%3E%3Ccircle cx='168' cy='155' r='0.4' opacity='0.26'/%3E%3Ccircle cx='236' cy='160' r='0.3' opacity='0.2'/%3E%3Ccircle cx='14' cy='193' r='0.45' opacity='0.3'/%3E%3Ccircle cx='89' cy='196' r='0.55' opacity='0.36'/%3E%3Ccircle cx='163' cy='202' r='0.4' opacity='0.26'/%3E%3Ccircle cx='262' cy='210' r='0.45' opacity='0.3'/%3E%3Ccircle cx='51' cy='229' r='0.35' opacity='0.22'/%3E%3Ccircle cx='125' cy='237' r='0.4' opacity='0.26'/%3E%3Ccircle cx='199' cy='244' r='0.3' opacity='0.2'/%3E%3Ccircle cx='40' cy='268' r='0.4' opacity='0.26'/%3E%3Ccircle cx='112' cy='274' r='0.3' opacity='0.2'/%3E%3Ccircle cx='186' cy='281' r='0.45' opacity='0.3'/%3E%3Ccircle cx='270' cy='266' r='0.35' opacity='0.22'/%3E%3C/g%3E%3C/svg%3E");
 
   position: relative;
   height: 100%;
@@ -29,74 +34,36 @@
   overflow-x: hidden;
   color: var(--pf-text);
   font-family: var(--pf-font-body);
-  background-color: rgb(215, 215, 218);
-  background-image:
-    radial-gradient(120% 80% at 50% -20%, rgba(255, 255, 255, 0.75), transparent 55%),
-    radial-gradient(90% 70% at 100% 40%, rgba(190, 195, 210, 0.45), transparent 50%),
-    radial-gradient(80% 60% at 0% 70%, rgba(200, 198, 190, 0.4), transparent 50%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='15' cy='15' r='1' fill='rgba(0%2C0%2C0%2C0.12)'/%3E%3C/svg%3E");
+  /* Flat black, matching the hero video, with a sparse, low-opacity star field. */
+  background-color: #000000;
+  background-image: var(--pf-star-field);
+  background-repeat: repeat;
   -webkit-font-smoothing: antialiased;
+  /* Firefox: a black track instead of the OS-default light scrollbar. */
+  scrollbar-color: rgba(255, 255, 255, 0.22) #000000;
+  scrollbar-width: thin;
+}
+
+/* .pf is the actual scrolling element (body has overflow: hidden), so the
+   scrollbar lives here — a black track with a faint pale thumb keeps it
+   inside the space theme instead of the standard light OS scrollbar. */
+.pf::-webkit-scrollbar {
+  width: 11px;
+}
+.pf::-webkit-scrollbar-track {
+  background: #000000;
+}
+.pf::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  border: 3px solid #000000;
+}
+.pf::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.36);
 }
 
 .pf * {
   box-sizing: border-box;
-}
-
-/* Floating liquid orbs */
-.pf-orbs {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.pf-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(48px);
-  opacity: 0.55;
-  will-change: transform;
-}
-
-.pf-orb-a {
-  width: min(48vw, 420px);
-  height: min(48vw, 420px);
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.85), rgba(180, 190, 210, 0.35) 60%, transparent 70%);
-  top: -8%;
-  left: -6%;
-  animation: pfOrbA 14s ease-in-out infinite;
-}
-
-.pf-orb-b {
-  width: min(42vw, 360px);
-  height: min(42vw, 360px);
-  background: radial-gradient(circle, rgba(200, 210, 230, 0.7), rgba(160, 170, 190, 0.25) 55%, transparent 70%);
-  top: 35%;
-  right: -10%;
-  animation: pfOrbB 11s ease-in-out infinite;
-}
-
-.pf-orb-c {
-  width: min(38vw, 320px);
-  height: min(38vw, 320px);
-  background: radial-gradient(circle, rgba(220, 215, 205, 0.65), rgba(180, 175, 165, 0.2) 55%, transparent 70%);
-  bottom: 5%;
-  left: 20%;
-  animation: pfOrbC 16s ease-in-out infinite;
-}
-
-@keyframes pfOrbA {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(6%, 10%) scale(1.08); }
-}
-@keyframes pfOrbB {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-8%, -6%) scale(1.12); }
-}
-@keyframes pfOrbC {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(5%, -8%) scale(0.94); }
 }
 
 .pf-shell {
@@ -120,7 +87,7 @@
   margin-bottom: 0.5rem;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  background: linear-gradient(180deg, rgba(215, 215, 218, 0.88), rgba(215, 215, 218, 0.55) 70%, transparent);
+  background: linear-gradient(180deg, rgba(5, 5, 9, 0.88), rgba(5, 5, 9, 0.55) 70%, transparent);
 }
 
 .pf-nav-brand {
@@ -128,10 +95,10 @@
   align-items: baseline;
   text-decoration: none;
   color: var(--pf-text);
-  font-family: var(--pf-font-serif);
-  font-size: 1.08rem;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-family: var(--pf-font-hero);
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.035em;
 }
 
 .pf-nav-links {
@@ -218,22 +185,515 @@
   z-index: 2;
 }
 
-/* Hero — one composition, brand first */
-.pf-hero {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 1.75rem;
-  align-items: center;
-  min-height: calc(100vh - 5.5rem);
-  padding: 1.5rem 0 3rem;
+.pf-shell-nav {
+  padding-bottom: 0;
+}
+.pf-shell-nav .pf-nav {
+  margin-bottom: 0;
 }
 
-.pf-hero-copy {
+.pf-cover {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  max-width: 34rem;
+  min-height: 100svh;
+  /* Paint the same black/starfield background directly on the hero itself
+     (rather than relying on the parent showing through, which stacking
+     contexts like `isolation` can block) so it's guaranteed to sit behind
+     the semi-transparent video. */
+  background-color: #000000;
+  background-image: var(--pf-star-field);
+  background-repeat: repeat;
+}
+
+.pf-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Dissolve the whole video block into the plain starfield at its edges
+     — heaviest on the bottom border — instead of ending in a hard
+     rectangle. This is what actually reads as "blending with the space
+     background", since real per-pixel transparency in the middle of the
+     footage isn't achievable (see HeroSpeechBackdrop). */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 32%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.3) 75%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 32%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.3) 75%,
+    transparent 100%
+  );
+}
+
+.pf-hero-bg-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, 177.78vh);
+  height: max(100%, 56.25vw);
+  transform: translate(-50%, -50%) scale(1.35);
+}
+
+.pf-hero-bg-frame video {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: cover;
+  /* 20% brighter than the original 0.28 dim */
+  filter: brightness(0.34) saturate(0.55) contrast(1.08);
+  /* NOTE: brightness(0.34) + opacity + the .pf-hero-bg-dim overlay all
+     multiply together. Opacity was previously pushed down to ~0.48 to
+     chase "transparency", which combined with the other two into an
+     almost-invisible frame — the speaker stopped being visible at all.
+     Keep opacity high so the footage still reads; do the "blend into
+     space" work with the edge mask on .pf-hero-bg and the star layer
+     painted on top instead (see HeroSpeechBackdrop / .pf-hero-bg-stars). */
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}
+
+.pf-hero-bg-dim {
+  position: absolute;
+  inset: 0;
+  /* Overlay darkness reduced 20% across the board to match the brighter video */
+  background:
+    radial-gradient(ellipse 58% 52% at 50% 42%, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.58) 72%),
+    rgba(0, 0, 0, 0.3);
+}
+
+/* Stars painted on TOP of the video (screen-blended, so they stay bright
+   regardless of the dim overlay beneath) rather than relying on the video
+   itself to reveal the page's stars underneath. */
+.pf-hero-bg-stars {
+  position: absolute;
+  inset: 0;
+  background-image: var(--pf-star-field);
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+}
+
+.pf-cover > .pf-shell-nav,
+.pf-cover > .pf-hero {
+  position: relative;
+  z-index: 1;
+}
+.pf-cover > .pf-shell-nav {
+  flex: 0 0 auto;
+}
+
+.pf-cover .pf-nav {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.42), transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.pf-cover .pf-nav-brand {
+  color: rgba(255, 255, 255, 0.94);
+  font-weight: 400;
+}
+
+.pf-cover .pf-nav-link {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.pf-cover .pf-nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.pf-cover .pf-nav-cta {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Hero — project pieces fixed in the corners/edges around the name */
+.pf-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0 0 1.1rem;
+  overflow: hidden;
+}
+
+.pf-hero-map {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.pf-hero-stage {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pf-hero-orbit {
+  position: absolute;
+  inset: 2% 2% 4% 2%;
+}
+
+/* Marvel-logo style materialize: each corner/edge piece fades and
+   sharpens into view, holds, then dissolves back out — staggered per
+   item so they never sync up. This controls entrance/exit only; the
+   default resting translucency (50%) lives on .pf-blob-shot below, so
+   the two don't compound into something murkier than intended.
+   The fade-in leg gets a noticeably wider slice of the cycle than the
+   fade-out leg (42% vs 26%), using the same gentle curve throughout. A
+   perfectly symmetric fade (verified — identical duration and easing on
+   both legs) still reads as an abrupt "pop" on the way in, because
+   something appearing grabs the eye far more than something gradually
+   disappearing does; simply slowing the fade-in down relative to the
+   fade-out is what makes the two feel equally subtle, without any single
+   segment ever snapping. */
+@keyframes pfBlobFade {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  42% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(-50%, -50%) scale(1);
+  }
+  74% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+}
+
+.pf-blob {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: min(var(--blob-w), 56%);
+  height: min(var(--blob-h), 52%);
+  /* Floor so accent pieces never shrink into an illegible speck on small
+     viewports, even though --blob-w/h are vmin-based. */
+  min-width: 130px;
+  min-height: 96px;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0;
+  /* A symmetric ease-in-out instead of the site-wide --pf-ease (which is a
+     fast-start "ease-out-expo" curve, tuned for snappy button/UI motion —
+     on a slow multi-second fade it read as an abrupt pop into view rather
+     than a gradual materialize). This ramps gently at both ends. */
+  animation: pfBlobFade var(--fade-dur, 9s) cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: var(--in-delay);
+}
+
+.pf-blob:hover,
+.pf-blob:focus-within {
+  animation-play-state: paused;
+  opacity: 1 !important;
+  filter: blur(0) !important;
+  transform: translate(-50%, -50%) scale(1) !important;
+}
+
+.pf-blob-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  /* Funky: a slow, small wobble in position and tilt — independent of the
+     entrance/exit fade on .pf-blob and the crossfade on .pf-piece, so all
+     three motions overlap without fighting each other. */
+  animation: pfBlobDrift var(--drift-dur, 10s) ease-in-out infinite;
+}
+
+@keyframes pfBlobDrift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(var(--rotate-start, -3deg));
+  }
+  50% {
+    transform: translate(var(--drift-x, 3%), var(--drift-y, -3%)) rotate(var(--rotate-end, 3deg));
+  }
+}
+
+.pf-blob-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.pf-blob-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 6px;
+  border-radius: 1rem;
+}
+
+/* Every shot for a project stacks full-bleed in the same spot and
+   crossfades from one to the next — a slow slideshow per cluster instead
+   of a busy collage of three tiled thumbnails. No card outline: no
+   border-radius clip, no box-shadow rim — the piece's silhouette is
+   defined entirely by the mask below, so it dissolves into the black
+   page on every side rather than reading as a bordered rectangle.
+   `closest-side` sizing (instead of the default farthest-corner) makes
+   the ellipse reach every edge at the same point, so the whole
+   perimeter feathers evenly instead of only the corners. */
+.pf-piece {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  filter: brightness(1.1) contrast(1.04);
+  opacity: 0;
+  -webkit-mask-image: radial-gradient(ellipse closest-side at center, black 32%, rgba(0, 0, 0, 0.45) 62%, transparent 96%);
+  mask-image: radial-gradient(ellipse closest-side at center, black 32%, rgba(0, 0, 0, 0.45) 62%, transparent 96%);
+}
+
+/* A blob with only one shot in its slice (a small accent nested next to a
+ * project's main piece) just holds steady — nothing to crossfade against. */
+.pf-piece-cycle-1 {
+  opacity: 1;
+}
+.pf-piece-cycle-2 {
+  animation: pfShotCycle2 var(--shot-cycle, 12s) linear infinite;
+  animation-delay: var(--shot-delay, 0s);
+}
+.pf-piece-cycle-3 {
+  animation: pfShotCycle3 var(--shot-cycle, 12s) linear infinite;
+  animation-delay: var(--shot-delay, 0s);
+}
+.pf-piece-cycle-4 {
+  animation: pfShotCycle4 var(--shot-cycle, 12s) linear infinite;
+  animation-delay: var(--shot-delay, 0s);
+}
+.pf-piece-cycle-5 {
+  animation: pfShotCycle5 var(--shot-cycle, 12s) linear infinite;
+  animation-delay: var(--shot-delay, 0s);
+}
+.pf-piece-cycle-6 {
+  animation: pfShotCycle6 var(--shot-cycle, 12s) linear infinite;
+  animation-delay: var(--shot-delay, 0s);
+}
+.pf-piece-cycle-7 {
+  animation: pfShotCycle7 var(--shot-cycle, 12s) linear infinite;
+  animation-delay: var(--shot-delay, 0s);
+}
+.pf-piece-cycle-8 {
+  animation: pfShotCycle8 var(--shot-cycle, 12s) linear infinite;
+  animation-delay: var(--shot-delay, 0s);
+}
+
+/* All curves share the same 8%-of-cycle crossfade width at the loop seam
+   (92% -> 100%/0%) so an outgoing image and the next incoming image always
+   overlap mid-fade instead of cutting or leaving a blank gap. Each Nth
+   curve just gives its "on" plateau 100/N% of the timeline minus that
+   shared 8% fade. */
+@keyframes pfShotCycle2 {
+  0%,
+  42% {
+    opacity: 1;
+  }
+  50%,
+  92% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes pfShotCycle3 {
+  0%,
+  25.33% {
+    opacity: 1;
+  }
+  33.33%,
+  92% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes pfShotCycle4 {
+  0%,
+  17% {
+    opacity: 1;
+  }
+  25%,
+  92% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes pfShotCycle5 {
+  0%,
+  12% {
+    opacity: 1;
+  }
+  20%,
+  92% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes pfShotCycle6 {
+  0%,
+  8.67% {
+    opacity: 1;
+  }
+  16.67%,
+  92% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes pfShotCycle7 {
+  0%,
+  6.29% {
+    opacity: 1;
+  }
+  14.29%,
+  92% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes pfShotCycle8 {
+  0%,
+  4.5% {
+    opacity: 1;
+  }
+  12.5%,
+  92% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.pf-shape-portrait {
+  height: min(var(--blob-h), 62%);
+}
+
+.pf-blob-shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 12%;
+  pointer-events: none;
+  display: block;
+  /* Default resting state: 30% opacity. Hovering/focusing the piece
+     brings it to full opacity (below). */
+  opacity: 0.3;
+  transition: opacity var(--pf-fast) var(--pf-ease);
+}
+.pf-shape-portrait .pf-blob-shot {
+  object-position: 50% 50%;
+}
+
+.pf-blob:hover .pf-blob-shot,
+.pf-blob:focus-within .pf-blob-shot {
+  opacity: 1;
+}
+
+.pf-blob:hover,
+.pf-blob:focus-within {
+  z-index: 5;
+}
+.pf-blob:hover .pf-piece,
+.pf-blob:focus-within .pf-piece {
+  filter: brightness(1.22) contrast(1.06) saturate(1.06);
+}
+
+.pf-hero-core {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.pf-hero-core::before {
+  content: '';
+  position: absolute;
+  width: min(34%, 320px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.28) 48%, transparent 74%);
+}
+
+.pf-name {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.32em;
+  font-family: var(--pf-font-hero);
+  font-size: clamp(2.7rem, 7vw, 5.4rem);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.048em;
+  line-height: 0.92;
+  color: #fff;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.55);
+  text-align: center;
+}
+.pf-name span {
+  display: block;
+}
+
+.pf-hero-foot {
+  position: relative;
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: 36rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.25rem 0.35rem;
+  text-align: center;
+  flex: 0 0 auto;
 }
 
 .pf-kicker {
@@ -241,33 +701,56 @@
   font-weight: 650;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--pf-faint);
-}
-
-.pf-name {
-  margin: 0;
-  font-family: var(--pf-font-serif);
-  font-size: clamp(3.6rem, 10vw, 6.5rem);
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: -0.028em;
-  line-height: 0.94;
-  color: rgba(18, 18, 24, 0.96);
-}
-
-.pf-lede {
-  margin: 0.15rem 0 0;
-  font-size: clamp(1.02rem, 2vw, 1.18rem);
-  line-height: 1.55;
-  color: var(--pf-muted);
-  max-width: 28rem;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .pf-cta-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
-  margin-top: 0.35rem;
+  margin-top: 0.15rem;
+  justify-content: center;
+}
+
+/* A single scroll cue instead of a row of buttons — a chevron that drifts
+   gently up and down to read as "scroll" without shouting about it. */
+.pf-scroll-cue {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.3rem;
+}
+.pf-scroll-cue-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.7);
+  animation: pfScrollCueBounce 2.2s ease-in-out infinite;
+  transition: color var(--pf-fast) var(--pf-ease);
+}
+.pf-scroll-cue-btn:hover,
+.pf-scroll-cue-btn:focus-visible {
+  color: rgba(255, 255, 255, 1);
+}
+.pf-scroll-cue-btn:active {
+  transform: scale(0.88);
+}
+.pf-scroll-cue-btn svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+@keyframes pfScrollCueBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
 }
 
 .pf-btn {
@@ -314,132 +797,16 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
-.pf-hero-visual {
-  position: relative;
-  justify-self: end;
-  width: min(100%, 420px);
+.pf-hero .pf-btn {
+  color: #fff;
+  background: linear-gradient(-75deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+  box-shadow:
+    inset 0 0.125em 0.125em rgba(255, 255, 255, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.28);
 }
-
-.pf-portrait-wrap {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  border-radius: 1.6em;
-  overflow: hidden;
-  background: var(--pf-glass-bg);
-  box-shadow: var(--pf-glass-shadow), 0 20px 50px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(8px);
-}
-
-.pf-portrait-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.15) 45%, rgba(0, 0, 0, 0.15));
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  -webkit-mask-composite: destination-out;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.pf-portrait {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 18%;
-  display: block;
-  transform: scale(1.02);
-  animation: pfPortraitIn 0.9s var(--pf-ease) both;
-}
-
-.pf-portrait-vale {
-  object-position: 50% 24%;
-  transform: scale(1.15);
-  filter: contrast(1.04) saturate(1.05);
-  animation: pfPortraitInVale 0.9s var(--pf-ease) both;
-}
-
-@keyframes pfPortraitInVale {
-  from { opacity: 0; transform: scale(1.22); }
-  to { opacity: 1; transform: scale(1.15); }
-}
-
-@keyframes pfPortraitIn {
-  from { opacity: 0; transform: scale(1.08); }
-  to { opacity: 1; transform: scale(1.02); }
-}
-
-.pf-portrait-glow {
-  position: absolute;
-  inset: -12%;
-  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.55), transparent 60%);
-  filter: blur(20px);
-  z-index: -1;
-  animation: pfGlow 5s ease-in-out infinite;
-}
-@keyframes pfGlow {
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.05); }
-}
-
-.pf-portrait-logos {
-  position: absolute;
-  z-index: 3;
-  top: 0.85rem;
-  left: 0.85rem;
-  right: 0.85rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  pointer-events: none;
-}
-
-.pf-portrait-logo {
-  display: block;
-  height: 2.35rem;
-  width: auto;
-  border-radius: 0.55em;
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
-  padding: 0.28rem 0.38rem;
-}
-
-.pf-portrait-logo-cornell {
-  height: 2.5rem;
-  padding: 0.2rem;
-}
-
-.pf-portrait-logo-smus {
-  height: 2.85rem;
-  width: auto;
-  padding: 0.12rem 0.2rem;
-  background: rgba(255, 255, 255, 0.92);
-}
-
-.pf-float-chip {
-  position: absolute;
-  z-index: 3;
-  bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
-  padding: 0.7rem 0.9rem;
-  border-radius: 1em;
-  background: rgba(255, 255, 255, 0.42);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  font-size: 0.78rem;
-  font-weight: 560;
-  color: rgba(30, 30, 36, 0.82);
-  letter-spacing: -0.01em;
-  animation: pfChip 4s ease-in-out infinite;
-}
-@keyframes pfChip {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+.pf-hero .pf-btn-primary {
+  background: #fff;
+  color: rgba(16, 16, 22, 0.94);
 }
 
 /* Sections */
@@ -478,7 +845,7 @@
 .pf-block {
   position: relative;
   padding: 2.4rem 0 2.6rem;
-  border-top: 1px solid rgba(40, 40, 48, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .pf-block:first-child {
@@ -503,7 +870,7 @@
   font-style: italic;
   font-size: clamp(2.4rem, 5vw, 3.4rem);
   line-height: 0.9;
-  color: rgba(40, 40, 48, 0.18);
+  color: rgba(255, 255, 255, 0.18);
   letter-spacing: -0.04em;
   user-select: none;
 }
@@ -533,13 +900,13 @@
   letter-spacing: -0.01em;
   color: var(--pf-faint);
   text-decoration: none;
-  border-bottom: 1px solid rgba(40, 40, 48, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   padding-bottom: 0.05em;
   transition: color var(--pf-fast) var(--pf-ease), border-color var(--pf-fast) var(--pf-ease);
 }
 .pf-block-url:hover {
   color: var(--pf-text);
-  border-color: rgba(40, 40, 48, 0.45);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
 .pf-block-tag {
@@ -611,7 +978,7 @@
   font-size: 1.02rem;
   line-height: 1.65;
   letter-spacing: -0.01em;
-  color: rgba(30, 30, 36, 0.88);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 /* Full-width copy (used when the gallery sits below): description on the
@@ -664,7 +1031,7 @@
   padding-left: 1.15rem;
   font-size: 0.95rem;
   line-height: 1.55;
-  color: rgba(36, 36, 42, 0.82);
+  color: rgba(255, 255, 255, 0.82);
   letter-spacing: -0.01em;
 }
 
@@ -676,7 +1043,7 @@
   width: 0.45em;
   height: 0.45em;
   border-radius: 1px;
-  background: rgba(32, 32, 38, 0.72);
+  background: rgba(255, 255, 255, 0.72);
   transform: rotate(45deg);
 }
 
@@ -699,12 +1066,12 @@
   letter-spacing: -0.01em;
   color: var(--pf-text);
   text-decoration: none;
-  border-bottom: 1px solid rgba(40, 40, 48, 0.22);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   padding-bottom: 0.1em;
   transition: border-color var(--pf-fast) var(--pf-ease);
 }
 .pf-block-links a:hover {
-  border-color: rgba(40, 40, 48, 0.7);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
 @media (max-width: 860px) {
@@ -763,6 +1130,17 @@
 }
 a.pf-gal-card:hover img {
   transform: scale(1.045);
+}
+
+/* Documents (emails, letters) stay fully readable instead of cover-cropped. */
+.pf-gal-card.pf-gal-contain {
+  background: #fff;
+}
+.pf-gal-card.pf-gal-contain img {
+  object-fit: contain;
+}
+a.pf-gal-card.pf-gal-contain:hover img {
+  transform: none;
 }
 
 .pf-gal-overlay {
@@ -867,7 +1245,7 @@ a.pf-gal-card:hover img {
   border: 1px solid rgba(255, 255, 255, 0.4);
   font-size: 0.86rem;
   line-height: 1.5;
-  color: rgba(40, 40, 48, 0.82);
+  color: rgba(255, 255, 255, 0.82);
 }
 .pf-project-lesson strong {
   font-weight: 650;
@@ -891,7 +1269,7 @@ a.pf-gal-card:hover img {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  color: rgba(40, 40, 48, 0.78);
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .pf-project-copy .pf-media-list {
@@ -1074,37 +1452,16 @@ a.pf-gal-card:hover img {
 
 @media (max-width: 860px) {
   .pf-hero {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    padding-top: 1rem;
-    gap: 1.5rem;
+    padding-bottom: 1.1rem;
   }
-  .pf-hero-visual {
-    justify-self: center;
-    width: min(100%, 340px);
-    order: -1;
-  }
-  .pf-hero-copy {
-    align-items: center;
-    text-align: center;
-    max-width: none;
+  .pf-hero-orbit {
+    inset: 4% 7% 8% 7%;
   }
   .pf-name {
-    text-align: center;
-  }
-  .pf-lede {
-    max-width: 32rem;
-  }
-  .pf-cta-row {
-    justify-content: center;
-  }
-  .pf-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .pf-contact h2 em {
-    font-family: var(--pf-font-serif);
-    font-style: italic;
-    font-weight: 400;
+    font-size: clamp(2.4rem, 12vw, 4rem);
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
   }
 }
 
@@ -1127,10 +1484,10 @@ a.pf-gal-card:hover img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pf-orb,
-  .pf-portrait,
-  .pf-portrait-glow,
-  .pf-float-chip {
+  .pf-blob {
     animation: none !important;
+    opacity: 1 !important;
+    filter: blur(0) !important;
+    transform: translate(-50%, -50%) scale(1) !important;
   }
 }
